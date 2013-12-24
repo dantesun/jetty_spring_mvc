@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="3 seconds">
+	<if condition='!isDefined("app.name")'>
+		<then>
+			<property name="app.name" value="compass-cecs" />
+		</then>
+	</if>
+	<if condition='!isDefined("app.home")'>
+		<then>
+			<property name="app.home" value="${user.dir}" />
+		</then>
+	</if>
+	<property name="log.file" value="${app.home}/logs/${app.name}" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{10} - %msg %n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+	<!-- <logger name="org.springframework.transaction" level="TRACE" /> -->
+
+	<!-- <logger name="org.eclipse.jetty" level="ALL" /> -->
+</configuration>
